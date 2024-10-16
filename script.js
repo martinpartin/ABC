@@ -28,11 +28,16 @@ function visNyOppgave() {
     imageElement.src = oppgave.bilde;  // Vis bildet
 }
 
-// Funksjon for å sjekke brukerens svar
+// Funksjon for å sjekke brukerens svar fra tastatur
 function sjekkSvar(event) {
     const tastetrykk = event.key.toLowerCase();
+    sjekkOmRiktigBokstav(tastetrykk);
+}
+
+// Funksjon for å sjekke brukerens svar fra skjermtastatur
+function sjekkOmRiktigBokstav(tastetrykk) {
     if (tastetrykk === riktigBokstav) {
-        feedbackElement.textContent = 'Riktig!';  // Gi positiv tilbakemelding
+        feedbackElement.textContent = 'Riktig!';
         feedbackElement.style.color = 'green';
         riktigLyd.play();  // Spill av riktig lyd
         setTimeout(visNyOppgave, 1000);  // Gå til neste oppgave etter 1 sekund
@@ -43,8 +48,16 @@ function sjekkSvar(event) {
     }
 }
 
-// Lytt til tastetrykk
+// Lytt til tastetrykk på fysisk tastatur
 window.addEventListener('keydown', sjekkSvar);
+
+// Lytt til klikk på skjermtastatur
+document.querySelectorAll('.key').forEach(key => {
+    key.addEventListener('click', () => {
+        const bokstav = key.textContent.toLowerCase();
+        sjekkOmRiktigBokstav(bokstav);
+    });
+});
 
 // Start med å vise en oppgave
 visNyOppgave();
