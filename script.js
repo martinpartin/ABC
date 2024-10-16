@@ -48,8 +48,8 @@ function sjekkOmRiktigBokstav(tastetrykk) {
     }
 }
 
-// Lytt til tastetrykk på fysisk tastatur
-window.addEventListener('keydown', sjekkSvar);
+// Bruk `self` i stedet for `window` for kompatibilitet
+self.addEventListener('keydown', sjekkSvar);
 
 // Lytt til klikk på skjermtastatur
 document.querySelectorAll('.key').forEach(key => {
