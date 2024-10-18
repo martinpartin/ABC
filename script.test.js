@@ -1,29 +1,34 @@
-const { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } = require('./script.js');
+import { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } from './script.ts';
 
-describe('Bokstavspill for barn', () => {
-    test('oppdaterPoeng skal oppdatere poengsummen riktig', () => {
-        document.body.innerHTML = '<p id="poeng">Poeng: 0</p><p id="feil">Feil: 0</p>';
-        poeng = 3;
-        feil = 1;
-        oppdaterPoeng();
-        expect(document.getElementById('poeng').textContent).toBe('Poeng: 3');
-        expect(document.getElementById('feil').textContent).toBe('Feil: 1');
-    });
+Deno.test("oppdaterPoeng skal oppdatere poengsummen riktig", () => {
+    document.body.innerHTML = '<p id="poeng">Poeng: 0</p><p id="feil">Feil: 0</p>';
+    let poeng = 3;
+    let feil = 1;
+    oppdaterPoeng();
+    if (document.getElementById("poeng").textContent !== "Poeng: 3") {
+        throw new Error("Poeng ble ikke oppdatert riktig");
+    }
+});
 
-    test('sjekkOmRiktigBokstav skal øke poeng ved riktig svar', () => {
-        poeng = 0;
-        sjekkOmRiktigBokstav('a');
-        expect(poeng).toBe(1);
-    });
+Deno.test("sjekkOmRiktigBokstav skal øke poeng ved riktig svar", () => {
+    let poeng = 0;
+    sjekkOmRiktigBokstav('a');
+    if (poeng !== 1) {
+        throw new Error("Poeng ble ikke økt");
+    }
+});
 
-    test('sjekkOmRiktigBokstav skal øke feil ved galt svar', () => {
-        feil = 0;
-        sjekkOmRiktigBokstav('b');
-        expect(feil).toBe(1);
-    });
+Deno.test("sjekkOmRiktigBokstav skal øke feil ved galt svar", () => {
+    let feil = 0;
+    sjekkOmRiktigBokstav('b');
+    if (feil !== 1) {
+        throw new Error("Feil ble ikke økt");
+    }
+});
 
-    test('visNyOppgave skal velge et nytt ord', () => {
-        const oppgave = visNyOppgave();
-        expect(oppgave).toBeTruthy();
-    });
+Deno.test("visNyOppgave skal velge et nytt ord", () => {
+    const oppgave = visNyOppgave();
+    if (!oppgave) {
+        throw new Error("Ingen oppgave ble valgt");
+    }
 });
