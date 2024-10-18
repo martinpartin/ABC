@@ -1,4 +1,4 @@
-const { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } = require('./script');
+const { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } = require('./script.js');
 
 describe('Bokstavspill for barn', () => {
     test('oppdaterPoeng skal oppdatere poengsummen riktig', () => {
