@@ -1,12 +1,14 @@
-body {
+html, body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f9;
-    margin: 0;
-    padding: 20px;
-    font-size: 16px;
 }
 
+/* Container for innhold */
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -15,33 +17,54 @@ body {
 
 h1 {
     color: #333;
-    font-size: 4vw;  /* Gjør tittelen responsiv */
+    font-size: 20px;  /* Justert fontstørrelse for overskriften */
+    margin: 50px 0 10px;  /* Sørg for nok plass under scoreboarden */
 }
 
 img {
     width: 100%;
-    max-width: 300px;
-    height: auto;  /* Bevarer proporsjonene til bildet */
-    margin: 10px 0;  /* Redusert margin */
+    max-width: 300px;  /* Større bilder på store skjermer */
+    height: auto;
+    margin: 15px 0;
 }
 
 #feedback {
-    font-size: 2vw;  /* Gjør feedback-teksten responsiv */
+    font-size: 16px;
     color: green;
+    margin: 10px 0;
 }
 
-/* Styling for det responsivt skjermtastaturet */
+/* Poeng og feil helt øverst */
+#scoreboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px 20px;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#poeng, #feil {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Styling for skjermtastaturet */
 .keyboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));  /* Juster antall kolonner basert på skjermbredden */
-    gap: 5px;  /* Redusert avstand mellom tastene */
-    margin-top: 10px;  /* Redusert margin */
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    margin-top: 10px;
     justify-items: center;
 }
 
 .key {
-    padding: 10px;
-    font-size: 3vw;  /* Gjør tastaturknappene responsiv */
+    padding: 15px;
+    font-size: 18px;
     background-color: #eee;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -57,31 +80,61 @@ img {
     background-color: #ccc;
 }
 
-/* Media Queries for små skjermer (mobil) */
-@media (max-width: 600px) {
+/* Responsiv layout for små skjermer (f.eks. iPhone SE) */
+@media (max-width: 375px) {
+    body {
+        font-size: 12px;
+    }
+
     h1 {
-        font-size: 6vw;  /* Øk størrelsen på tittelen på små skjermer */
-    }
-
-    .key {
-        font-size: 5vw;  /* Øk størrelsen på tastene på små skjermer */
-        padding: 10px;  /* Gjør tastene litt mindre for å spare plass */
-    }
-
-    #feedback {
-        font-size: 4vw;  /* Øk størrelsen på feedback-teksten på små skjermer */
-    }
-
-    .container {
-        padding: 5px;  /* Redusert padding for små skjermer */
+        font-size: 14px;
+        margin: 45px 0 5px;  /* Juster margin under scoreboarden */
     }
 
     img {
-        margin: 5px 0;  /* Redusert margin rundt bildet */
+        max-width: 150px;
+    }
+
+    #feedback {
+        font-size: 12px;
+    }
+
+    #scoreboard {
+        padding: 5px 10px;  /* Mindre padding for små skjermer */
+    }
+
+    #poeng, #feil {
+        font-size: 10px;
     }
 
     .keyboard {
-        gap: 3px;  /* Enda mindre avstand mellom tastene på små skjermer */
-        margin-top: 5px;  /* Redusert margin over tastaturet */
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        margin-top: 5px;
+    }
+
+    .key {
+        font-size: 10px;
+        padding: 8px;
+    }
+}
+
+/* Responsiv layout for mellomstore skjermer (nettbrett) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    img {
+        max-width: 200px;
+    }
+
+    .keyboard {
+        grid-template-columns: repeat(9, 1fr);
+    }
+
+    .key {
+        padding: 12px;
+        font-size: 14px;
     }
 }
