@@ -1,4 +1,4 @@
-import { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } from './script.ts';
+import { oppdaterPoeng, sjekkOmRiktigBokstav, visNyOppgave } from './script.js';
 
 Deno.test("oppdaterPoeng skal oppdatere poengsummen riktig", () => {
     document.body.innerHTML = '<p id="poeng">Poeng: 0</p><p id="feil">Feil: 0</p>';
