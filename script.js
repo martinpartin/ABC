@@ -16,9 +16,16 @@ const ordliste = [
 const riktigLyd = new Audio('riktig.mp3');
 const galtLyd = new Audio('galt.mp3');
 
-let riktigBokstav = '';
+// Poeng
+let poeng = 0;
+let feil = 0;
+
 const feedbackElement = document.getElementById('feedback');
 const imageElement = document.getElementById('image');
+const poengElement = document.getElementById('poeng');  // Nytt element for å vise poeng
+const feilElement = document.getElementById('feil');    // Nytt element for å vise feil
+
+let riktigBokstav = '';
 
 // Funksjon for å vise et nytt ord og bilde
 function visNyOppgave() {
@@ -28,28 +35,34 @@ function visNyOppgave() {
     imageElement.src = oppgave.bilde;  // Vis bildet
 }
 
-// Funksjon for å sjekke brukerens svar fra tastatur
-function sjekkSvar(event) {
-    const tastetrykk = event.key.toLowerCase();
-    sjekkOmRiktigBokstav(tastetrykk);
+// Funksjon for å oppdatere poeng
+function oppdaterPoeng() {
+    poengElement.textContent = `Poeng: ${poeng}`;
+    feilElement.textContent = `Feil: ${feil}`;
 }
 
-// Funksjon for å sjekke brukerens svar fra skjermtastatur
+// Funksjon for å sjekke brukerens svar fra tastatur eller skjermtastatur
 function sjekkOmRiktigBokstav(tastetrykk) {
     if (tastetrykk === riktigBokstav) {
         feedbackElement.textContent = 'Riktig!';
         feedbackElement.style.color = 'green';
         riktigLyd.play();  // Spill av riktig lyd
+        poeng++;  // Øk poengsummen
         setTimeout(visNyOppgave, 1000);  // Gå til neste oppgave etter 1 sekund
     } else {
         feedbackElement.textContent = 'Feil, prøv igjen!';
         feedbackElement.style.color = 'red';
         galtLyd.play();  // Spill av feil lyd
+        feil++;  // Øk feil-tellingen
     }
+    oppdaterPoeng();  // Oppdater poeng på skjermen
 }
 
 // Bruk `self` i stedet for `window` for kompatibilitet
-self.addEventListener('keydown', sjekkSvar);
+self.addEventListener('keydown', (event) => {
+    const tastetrykk = event.key.toLowerCase();
+    sjekkOmRiktigBokstav(tastetrykk);
+});
 
 // Lytt til klikk på skjermtastatur
 document.querySelectorAll('.key').forEach(key => {
@@ -61,3 +74,6 @@ document.querySelectorAll('.key').forEach(key => {
 
 // Start med å vise en oppgave
 visNyOppgave();
+
+// Start poengtelling på 0
+oppdaterPoeng();

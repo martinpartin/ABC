@@ -15,33 +15,40 @@ body {
 
 h1 {
     color: #333;
-    font-size: 4vw;  /* Gjør tittelen responsiv */
+    font-size: 4vw;
 }
 
 img {
     width: 100%;
     max-width: 300px;
-    height: auto;  /* Bevarer proporsjonene til bildet */
-    margin: 10px 0;  /* Redusert margin */
+    height: auto;
+    margin: 10px 0;
 }
 
 #feedback {
-    font-size: 2vw;  /* Gjør feedback-teksten responsiv */
+    font-size: 2vw;
     color: green;
+}
+
+/* Poeng og feil */
+#poeng, #feil {
+    font-size: 2vw;
+    margin: 5px 0;
+    color: #333;
 }
 
 /* Styling for det responsivt skjermtastaturet */
 .keyboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));  /* Juster antall kolonner basert på skjermbredden */
-    gap: 5px;  /* Redusert avstand mellom tastene */
-    margin-top: 10px;  /* Redusert margin */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 5px;
+    margin-top: 10px;
     justify-items: center;
 }
 
 .key {
     padding: 10px;
-    font-size: 3vw;  /* Gjør tastaturknappene responsiv */
+    font-size: 3vw;
     background-color: #eee;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -57,31 +64,30 @@ img {
     background-color: #ccc;
 }
 
-/* Media Queries for små skjermer (mobil) */
 @media (max-width: 600px) {
     h1 {
-        font-size: 6vw;  /* Øk størrelsen på tittelen på små skjermer */
+        font-size: 6vw;
     }
 
     .key {
-        font-size: 5vw;  /* Øk størrelsen på tastene på små skjermer */
-        padding: 10px;  /* Gjør tastene litt mindre for å spare plass */
+        font-size: 5vw;
+        padding: 10px;
     }
 
-    #feedback {
-        font-size: 4vw;  /* Øk størrelsen på feedback-teksten på små skjermer */
+    #feedback, #poeng, #feil {
+        font-size: 4vw;
     }
 
     .container {
-        padding: 5px;  /* Redusert padding for små skjermer */
+        padding: 5px;
     }
 
     img {
-        margin: 5px 0;  /* Redusert margin rundt bildet */
+        margin: 5px 0;
     }
 
     .keyboard {
-        gap: 3px;  /* Enda mindre avstand mellom tastene på små skjermer */
-        margin-top: 5px;  /* Redusert margin over tastaturet */
+        gap: 3px;
+        margin-top: 5px;
     }
 }
