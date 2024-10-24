@@ -62,6 +62,14 @@ img {
     justify-items: center;
 }
 
+.keyboardeasy{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    justify-items: center;
+}
+
 .key {
     padding: 15px;
     font-size: 18px;
